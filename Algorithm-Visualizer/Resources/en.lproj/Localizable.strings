@@ -1,0 +1,28 @@
+/* 
+  Localizable.strings
+  Algorithm Visualizer
+
+  Created by Min-Kyu Lee on 2023-08-17.
+  
+*/
+"cell-type" = "Cell Type";
+"start" = "Start";
+"not-visited" = "Not Visited";
+"target" = "Target";
+"to-be-visited" = "To Be Visited";
+"visited" = "Visited";
+"start-algorithm" = "Start Algorithm";
+"cell-type-header" = "Cell Type:";
+"reset-grid" = "Reset Grid";
+"home" = "Home";
+"bfs" = "BFS";
+"bfs-page-title" = "BFS Algorithm";
+"algorithm-visualizer" = "Algorihtm Visualizer";
+"settings-page-title" = "Settings";
+"dark-theme" = "Dark Theme";
+"use-system-default" = "Use System Default";
+"use-dark-theme" = "Use Dark Theme";
+"algorithm-speed-header" = "Algorithm Speed:";
+"queue-header" = "Queue:";
+"slow" = "Slow";
+"fast" = "Fast";
