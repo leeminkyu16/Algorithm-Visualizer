@@ -12,30 +12,30 @@ struct CellType: RawRepresentable, Equatable, Hashable, Identifiable {
 	var rawValue: String
 	let localizedStringKey: LocalizedStringKey
 	let color: Color
-	
+
 	init?(rawValue: String) {
-		switch(rawValue) {
+		switch rawValue {
 		case CellType.start.rawValue:
-			self = CellType.start;
+			self = CellType.start
 		case CellType.target.rawValue:
-			self = CellType.target;
+			self = CellType.target
 		case CellType.visited.rawValue:
-			self = CellType.visited;
+			self = CellType.visited
 		case CellType.toBeVisited.rawValue:
-			self = CellType.toBeVisited;
+			self = CellType.toBeVisited
 		case CellType.notVisited.rawValue:
-			self = CellType.notVisited;
+			self = CellType.notVisited
 		default:
-			return nil;
+			return nil
 		}
 	}
-	
+
 	init(rawValue: String, localizedStringKey: LocalizedStringKey, color: Color) {
 		self.rawValue = rawValue
 		self.localizedStringKey = localizedStringKey
 		self.color = color
 	}
-	
+
 	static let start = CellType(
 		rawValue: "start",
 		localizedStringKey: LocalizedStringKey("start"),
@@ -61,7 +61,7 @@ struct CellType: RawRepresentable, Equatable, Hashable, Identifiable {
 		localizedStringKey: LocalizedStringKey("not-visited"),
 		color: Color(UIColor(named: "bfs-not-visited-cell")!)
 	)
-    
+
 	var id: String { self.rawValue }
 	static func == (lhs: Self, rhs: Self) -> Bool {
 		return lhs.rawValue == rhs.rawValue

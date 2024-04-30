@@ -12,6 +12,6 @@ protocol INavigationService {
 	var navigationPath: NavigationPath { get set }
 	var navigationPathPublished: Published<NavigationPath> { get }
 	var navigationPathPublisher: Published<NavigationPath>.Publisher { get }
-	
+
 	func navigateTo(navigationDestination: NavigationDestination)
 }

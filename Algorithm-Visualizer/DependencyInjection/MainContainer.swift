@@ -7,44 +7,27 @@
 
 import SwiftUI
 import Swinject
+import SwinjectAutoregistration
 
 func getMainContainer() -> Container {
 	let newContainer = Container()
-	
+
 	/**
 	 * View Models
 	 */
-	newContainer.register(BfsPageViewModel.self, factory: { _ in BfsPageViewModel()})
-	newContainer.register(
-		HomePageViewModel.self) { r in
-			HomePageViewModel(
-				navigationService: r.resolve(INavigationService.self)!
-			)
-		}
-	newContainer.register(MainNavigationViewModel.self) { r in
-		MainNavigationViewModel(
-			navigationService: r.resolve(INavigationService.self)!,
-			settingsService: r.resolve(ISettingsService.self)!
-		)
-	}
-	newContainer.register(SettingsPageViewModel.self) { r in
-		SettingsPageViewModel(
-			settingsService: r.resolve(ISettingsService.self)!
-		)
-	}
-	
+	newContainer.autoregister(BfsPageViewModel.self, initializer: BfsPageViewModel.init)
+	newContainer.autoregister(HomePageViewModel.self, initializer: HomePageViewModel.init)
+	newContainer.autoregister(MainNavigationViewModel.self, initializer: MainNavigationViewModel.init)
+	newContainer.autoregister(SettingsPageViewModel.self, initializer: SettingsPageViewModel.init)
+
 	/**
 	 * Services
 	 */
-	newContainer.register(INavigationService.self) { _ in
-		NavigationService()
-	}
-	.inObjectScope(.container)
-	
-	newContainer.register(ISettingsService.self) { _ in
-		SettingsService()
-	}
-	.inObjectScope(.container)
-	
+	newContainer.autoregister(INavigationService.self, initializer: NavigationService.init)
+		.inObjectScope(.container)
+
+	newContainer.autoregister(ISettingsService.self, initializer: SettingsService.init)
+		.inObjectScope(.container)
+
 	return newContainer
 }

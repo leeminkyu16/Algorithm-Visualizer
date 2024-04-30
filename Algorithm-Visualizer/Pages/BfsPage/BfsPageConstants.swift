@@ -16,15 +16,15 @@ class BfsPageConstants {
 		squareSize: CGFloat = BfsPageConstants.squareSize + 1,
 		offset: CGFloat = 0
 	) -> CGFloat {
-		return CGFloat(index) * squareSize + offset;
+		return CGFloat(index) * squareSize + offset
 	}
-	
+
 	static func coordinateToIndex(
 		coordinate: CGFloat,
 		squareSize: CGFloat = BfsPageConstants.squareSize + 1,
 		offset: CGFloat = 0
 	) -> Int {
-		return Int(floor((coordinate - offset) / squareSize));
+		return Int(floor((coordinate - offset) / squareSize))
 	}
 
 }

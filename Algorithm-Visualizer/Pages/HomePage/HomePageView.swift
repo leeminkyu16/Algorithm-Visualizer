@@ -14,7 +14,7 @@ struct HomePageView: View {
 	@ObservedObject var viewModel: HomePageViewModel
 	@State var topSpacing: CGFloat = 0
 	@State var animateTitleGradient: Bool = true
-	
+
 	var body: some View {
 		GeometryReader { proxy in
 			VStack {
@@ -22,19 +22,19 @@ struct HomePageView: View {
 					.frame(
 						maxHeight: topSpacing
 					)
-					.onAppear() {
+					.onAppear {
 						self.topSpacing = proxy.size.height * 0.099
 						withAnimation(.easeInOut(duration: 5)) {
 							self.topSpacing = proxy.size.height * 0.1
 						}
 					}
-				Text(LocalizedStringKey("algorithm-visualizer"))
+				Text(L10n.algorithmVisualizer)
 					.font(.largeTitle)
 					.fontWeight(.bold)
 					.foregroundLinearGradient(
 						colors: [
-							Color(UIColor(named: "title-highlight-text")!),
-							Color(UIColor(named: "primary-text")!)
+							Asset.Colors.titleHighlightText.swiftUIColor,
+							Asset.Colors.primaryText.swiftUIColor
 						],
 						startPoint: animateTitleGradient ? .topLeading : .bottomTrailing,
 						endPoint: animateTitleGradient ? .bottomTrailing : .topLeading
@@ -43,7 +43,7 @@ struct HomePageView: View {
 					.onTapGesture {
 						animateTitleGradient.toggle()
 					}
-				
+
 				Spacer()
 					.frame(maxHeight: proxy.size.height * 0.075)
 				Button(
@@ -52,22 +52,25 @@ struct HomePageView: View {
 					},
 					label: {
 						Text(
-							LocalizedStringKey("bfs-page-title")
+							L10n.bfsPageTitle
 						)
-						.foregroundColor(Color(uiColor: UIColor(named: "primary-text")!))
+						.foregroundColor(Asset.Colors.primaryText.swiftUIColor)
 						.frame(maxWidth: .infinity)
 					}
 				)
 				.padding(CGFloat(10))
 				.foregroundColor(
-					Color(UIColor(named: "primary-text")!)
+					Asset.Colors.primaryText.swiftUIColor
 				)
 				.background(
-					Color(UIColor(named: "background")!)
+					Asset.Colors.background.swiftUIColor
 				)
 				.cornerRadius(CGFloat(25))
-				.shadow(color: Color(uiColor: UIColor(named: "primary-shadow")!), radius: CGFloat(3))
-				
+				.shadow(
+					color: Asset.Colors.primaryShadow.swiftUIColor,
+					radius: CGFloat(3)
+				)
+
 				Spacer()
 					.frame(maxHeight: proxy.size.height * 0.03)
 				Button(
@@ -76,21 +79,26 @@ struct HomePageView: View {
 					},
 					label: {
 						Text(
-							LocalizedStringKey("settings-page-title")
+							L10n.settingsPageTitle
 						)
-						.foregroundColor(Color(uiColor: UIColor(named: "primary-text")!))
+						.foregroundColor(
+							Asset.Colors.primaryText.swiftUIColor
+						)
 						.frame(maxWidth: .infinity)
 					}
 				)
 				.padding(CGFloat(10))
 				.foregroundColor(
-					Color(UIColor(named: "primary-text")!)
+					Asset.Colors.primaryText.swiftUIColor
 				)
 				.background(
-					Color(UIColor(named: "background")!)
+					Asset.Colors.background.swiftUIColor
 				)
 				.cornerRadius(CGFloat(25))
-				.shadow(color: Color(uiColor: UIColor(named: "primary-shadow")!), radius: CGFloat(3))
+				.shadow(
+					color: Asset.Colors.primaryShadow.swiftUIColor,
+					radius: CGFloat(3)
+				)
 			}
 			.padding(
 				EdgeInsets(

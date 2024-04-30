@@ -13,21 +13,21 @@ struct SettingsPageView: View {
 	@Binding var container: Container
 	@ObservedObject var viewModel: SettingsPageViewModel
 	@Environment(\.originalColorScheme) var originalColorScheme
-	
+
 	var body: some View {
 		GeometryReader { proxy in
 			VStack {
 				Spacer()
 					.frame(maxHeight: proxy.size.height * 0.05)
 				HStack {
-					Text(LocalizedStringKey("dark-theme"))
+					Text(L10n.darkTheme)
 						.font(.subheadline)
 				}
 				.frame(
 					maxWidth: .infinity,
 					alignment: .leading
 				)
-				Toggle(LocalizedStringKey("use-system-default"), isOn: Binding(
+				Toggle(L10n.useSystemDefault, isOn: Binding(
 					get: {
 						viewModel.settingsService.darkThemeUseSettingDefault.value
 					},
@@ -36,9 +36,9 @@ struct SettingsPageView: View {
 						viewModel.settingsService.darkThemeUseSettingDefault.value = newValue
 					}
 				))
-				if (!viewModel.darkThemeUseSystemDefault) {
+				if !viewModel.darkThemeUseSystemDefault {
 					Toggle(
-						LocalizedStringKey("use-dark-theme"),
+						L10n.useDarkTheme,
 						isOn: viewModel.darkThemeUserInputBinding
 					)
 					.transition(.slide)

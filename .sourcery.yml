@@ -1,0 +1,6 @@
+configurations:
+    - sources:
+        - ./Algorithm-Visualizer
+      templates:
+        - ./Algorithm-Visualizer/Templates/
+      output: ./Algorithm-Visualizer/Generated/Extensions/

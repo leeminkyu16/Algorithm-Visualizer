@@ -12,7 +12,7 @@ struct MainNavigationView: View {
 	@Binding var container: Container
 	@ObservedObject var viewModel: MainNavigationViewModel
 	@Environment(\.originalColorScheme) var originalColorScheme
-	
+
 	var body: some View {
 		NavigationStack(path: $viewModel.navigationPath) {
 			List {
@@ -20,7 +20,7 @@ struct MainNavigationView: View {
 				NavigationLink("bfs", value: NavigationDestination.bfs)
 			}
 				.navigationDestination(for: NavigationDestination.self) { navigationDestination in
-					switch(navigationDestination) {
+					switch navigationDestination {
 					case NavigationDestination.home:
 						HomePageView(
 							container: $container,
@@ -28,7 +28,10 @@ struct MainNavigationView: View {
 						)
 						.navigationBarBackButtonHidden(true)
 					case NavigationDestination.bfs:
-						BfsPageView(container: $container, viewModel: container.resolve(BfsPageViewModel.self)!)
+						BfsPageView(
+							container: $container,
+							viewModel: container.resolve(BfsPageViewModel.self)!
+						)
 							.navigationBarTitleDisplayMode(.inline)
 							.navigationTitle(LocalizedStringKey("bfs-page-title"))
 					case NavigationDestination.settings:
@@ -36,8 +39,8 @@ struct MainNavigationView: View {
 							container: $container,
 							viewModel: container.resolve(SettingsPageViewModel.self)!
 						)
-						.navigationBarTitleDisplayMode(.inline)
-						.navigationTitle(LocalizedStringKey("settings-page-title"))
+							.navigationBarTitleDisplayMode(.inline)
+							.navigationTitle(LocalizedStringKey("settings-page-title"))
 					}
 				}
 				.hidden()

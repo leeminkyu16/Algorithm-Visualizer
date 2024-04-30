@@ -12,7 +12,7 @@ class AvObservable<Element> {
 	init(defaultValue: Element) {
 		internalValue = defaultValue
 	}
-	
+
 	private var internalValue: Element
 	var value: Element {
 		get {
@@ -26,25 +26,25 @@ class AvObservable<Element> {
 		}
 	}
 	private var internalOnChangeFunctions: [String: (Element) -> Void] = [String: (Element) -> Void].init()
-	
+
 	func addOnChange(
 		newOnChange: @escaping ((Element) -> Void),
-		viewModel: AvViewModel
+		viewModel: any AvViewModel
 	) {
 		viewModel.onDeinit.append(
 			self.addOnChange(newOnChange: newOnChange)
 		)
 	}
-	
+
 	func addOnChange(newOnChange: @escaping (Element) -> Void) -> (() -> Void) {
 		let key = UUID().uuidString
 		self.internalOnChangeFunctions.updateValue(newOnChange, forKey: key)
-		
+
 		return { [weak self] in
 			self?.internalOnChangeFunctions.removeValue(forKey: key)
 		}
 	}
-	
+
 	func getBinding() -> Binding<Element> {
 		return Binding(
 			get: {

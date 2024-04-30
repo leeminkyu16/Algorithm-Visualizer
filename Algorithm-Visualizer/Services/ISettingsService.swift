@@ -9,6 +9,6 @@ import Foundation
 import SwiftUI
 
 protocol ISettingsService {
-	var darkThemeUseSettingDefault: AvObservable<Bool> { get set }	
+	var darkThemeUseSettingDefault: AvObservable<Bool> { get set }
 	var darkThemeUserInput: AvObservable<Bool> { get set }
 }

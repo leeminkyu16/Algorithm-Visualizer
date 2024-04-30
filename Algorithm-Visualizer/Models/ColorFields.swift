@@ -8,8 +8,8 @@
 import Foundation
 
 struct ColorFields {
-	var red: Double;
-	var green: Double;
-	var blue: Double;
-	var opacity: Double;
+	var red: Double
+	var green: Double
+	var blue: Double
+	var opacity: Double
 }

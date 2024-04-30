@@ -12,7 +12,7 @@ import Swinject
 struct AlgorithmVisualizerApp: App {
 	@State var container: Container = getMainContainer()
 	@Environment(\.colorScheme) var colorScheme
-	
+
     var body: some Scene {
         WindowGroup {
 			MainNavigationView(

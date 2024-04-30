@@ -16,16 +16,16 @@ class SettingsService: ISettingsService {
 	var darkThemeUserInput: AvObservable<Bool> = AvObservable(
 		defaultValue: !UserDefaults.standard.bool(forKey: DARK_THEME_USE_INPUT_KEY)
 	)
-	
+
 	init() {
-		let _ = darkThemeUseSettingDefault.addOnChange { newValue in
+		_ = darkThemeUseSettingDefault.addOnChange { newValue in
 			UserDefaults.standard.set(
 				!newValue,
 				forKey: DARK_THEME_USE_SETTING_DEFAULT_KEY
 			)
 		}
-		
-		let _ = darkThemeUserInput.addOnChange { newValue in
+
+		_ = darkThemeUserInput.addOnChange { newValue in
 			UserDefaults.standard.set(
 				!newValue,
 				forKey: DARK_THEME_USE_INPUT_KEY
@@ -33,5 +33,5 @@ class SettingsService: ISettingsService {
 		}
 	}
 }
-fileprivate let DARK_THEME_USE_INPUT_KEY: String = "DARK_THEME_USE_INPUT_KEY"
-fileprivate let DARK_THEME_USE_SETTING_DEFAULT_KEY: String = "DARK_THEME_USE_SETTING_DEFAULT_KEY"
+private let DARK_THEME_USE_INPUT_KEY: String = "DARK_THEME_USE_INPUT_KEY"
+private let DARK_THEME_USE_SETTING_DEFAULT_KEY: String = "DARK_THEME_USE_SETTING_DEFAULT_KEY"

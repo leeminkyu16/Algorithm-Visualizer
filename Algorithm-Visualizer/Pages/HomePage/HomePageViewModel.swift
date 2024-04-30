@@ -10,15 +10,15 @@ import SwiftUI
 
 class HomePageViewModel: ObservableObject {
 	@Published var navigationService: INavigationService
-	
+
 	init(navigationService: INavigationService) {
 		self.navigationService = navigationService
 	}
-	
+
 	func navigateToSettingsPage() {
 		self.navigationService.navigateTo(navigationDestination: NavigationDestination.settings)
 	}
-	
+
 	func navigateToBfsPage() {
 		self.navigationService.navigateTo(navigationDestination: NavigationDestination.bfs)
 	}

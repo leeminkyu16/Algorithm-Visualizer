@@ -1,0 +1,38 @@
+{% for struct in types.structs %}
+{% if struct|annotated:"GenerateCopy" %}
+// sourcery:file:{{ struct.name }}+Copy
+import Foundation
+import SwiftUI
+
+extension {{ struct.name }} {
+    func copy(
+        {% for variable in struct.variables %}
+            {{ variable.name }}: CopyParameter<{{ variable.typeName }}> = .old{{ ',' if not forloop.last }}
+        {% endfor %} 
+    ) -> {{ struct.name }} {
+        {% for variable in struct.variables %}
+        let {{ variable.name }}Param = switch({{ variable.name }}) {
+        case .old:
+            self.{{ variable.name }}
+        case .new(let newValue):
+            newValue
+        }
+
+        {% endfor %}
+
+        return {{ struct.name }}(
+        {% for variable in struct.variables %}
+            {{ variable.name }}: {{ variable.name }}Param{{ ',' if not forloop.last }}
+        {% endfor %}
+        )
+    }
+
+    enum CopyParameter<T> {
+		case old
+		case new(T)
+	}
+}
+// sourcery:end
+{% else %}
+{% endif %}
+{% endfor %}
